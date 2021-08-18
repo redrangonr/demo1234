@@ -29,4 +29,10 @@ public class ProductService implements IProductService{
     public void remote(Long id) {
         productsRepository.deleteById(id);
     }
+
+
+    @Override
+    public Iterable<Products> findProductsByNameContaining(String Name) {
+        return productsRepository.findProductsByNameContaining(Name);
+    }
 }

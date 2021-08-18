@@ -16,7 +16,7 @@ public class ProductsController {
     @Autowired
     private IProductService productService;
 
-    @GetMapping("")
+    @GetMapping("/list")
     ResponseEntity<Iterable<Products>> findAll(){
         return  new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
@@ -49,5 +49,9 @@ return  new ResponseEntity<>(productService.save(products),HttpStatus.CREATED);
         }
         productService.remote(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("")
+    ResponseEntity<Iterable<Products>> findProducdByName(@RequestParam Optional<String > q){
+        return new ResponseEntity<>(productService.findProductsByNameContaining(q.get()),HttpStatus.OK);
     }
 }
